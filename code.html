@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bangkok Air Quality</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "outline": "#6f7881",
+                      "tertiary": "#845000",
+                      "surface-bright": "#f7f9fb",
+                      "inverse-surface": "#2d3133",
+                      "on-tertiary-fixed": "#2b1700",
+                      "surface-container-low": "#f2f4f6",
+                      "on-error-container": "#93000a",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-container-high": "#e6e8ea",
+                      "surface": "#f7f9fb",
+                      "outline-variant": "#bec7d1",
+                      "on-surface": "#191c1e",
+                      "primary-container": "#007cb3",
+                      "on-secondary": "#ffffff",
+                      "secondary-fixed": "#cce5ff",
+                      "on-tertiary-container": "#fffbff",
+                      "aqi-hazardous": "#7E0023",
+                      "on-secondary-fixed-variant": "#004b72",
+                      "inverse-primary": "#8bceff",
+                      "aqi-unhealthy-sensitive": "#FF9933",
+                      "on-primary-container": "#fcfcff",
+                      "secondary": "#006496",
+                      "aqi-very-unhealthy": "#8F3F97",
+                      "primary": "#00628e",
+                      "on-secondary-fixed": "#001e31",
+                      "on-tertiary-fixed-variant": "#673d00",
+                      "surface-container": "#eceef0",
+                      "error": "#ba1a1a",
+                      "surface-container-highest": "#e0e3e5",
+                      "on-primary-fixed": "#001e2f",
+                      "primary-fixed": "#c9e6ff",
+                      "aqi-unhealthy": "#FF0000",
+                      "inverse-on-surface": "#eff1f3",
+                      "on-error": "#ffffff",
+                      "on-surface-variant": "#3f4850",
+                      "tertiary-container": "#a66600",
+                      "tertiary-fixed": "#ffddba",
+                      "on-primary": "#ffffff",
+                      "secondary-fixed-dim": "#91cdff",
+                      "aqi-moderate": "#FFDE33",
+                      "surface-tint": "#006492",
+                      "primary-fixed-dim": "#8bceff",
+                      "on-secondary-container": "#00476d",
+                      "error-container": "#ffdad6",
+                      "background": "#f7f9fb",
+                      "tertiary-fixed-dim": "#ffb865",
+                      "on-background": "#191c1e",
+                      "surface-dim": "#d8dadc",
+                      "secondary-container": "#59b8fd",
+                      "aqi-good": "#00E400",
+                      "on-primary-fixed-variant": "#004b6f",
+                      "on-tertiary": "#ffffff",
+                      "surface-variant": "#e0e3e5"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin-mobile": "16px",
+                      "card-padding": "20px",
+                      "margin-desktop": "32px",
+                      "gutter": "12px",
+                      "base": "8px"
+              },
+              "fontFamily": {
+                      "title-md": [
+                              "Hanken Grotesk"
+                      ],
+                      "headline-lg-mobile": [
+                              "Hanken Grotesk"
+                      ],
+                      "body-sm": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Hanken Grotesk"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "display-aqi": [
+                              "Hanken Grotesk"
+                      ],
+                      "label-data": [
+                              "JetBrains Mono"
+                      ]
+              },
+              "fontSize": {
+                      "title-md": [
+                              "18px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-aqi": [
+                              "84px",
+                              {
+                                      "lineHeight": "90px",
+                                      "letterSpacing": "-0.04em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-data": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "500"
+                              }
+                      ]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(190, 199, 209, 0.2);
+        }
+        
+        .gauge-ring {
+            stroke-dasharray: 283;
+            stroke-dashoffset: 140; /* represents about half filled */
+            transition: stroke-dashoffset 1s ease-out;
+        }
+
+        .chart-line {
+            fill: none;
+            stroke: #00628e;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .chart-area {
+            fill: url(#chartGradient);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-24 font-sans selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-mobile h-16 bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-md border-b border-outline-variant/30 dark:border-outline/20">
+<div class="flex items-center gap-2">
+<button class="text-primary dark:text-primary-fixed active:scale-95 transition-transform p-2 rounded-full hover:bg-surface-container-high/50 transition-colors focus:outline-none focus:ring-2 focus:ring-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">location_on</span>
+</button>
+<h1 class="font-title-md text-title-md font-semibold text-on-surface">Bangkok Air</h1>
+</div>
+<button class="text-primary dark:text-primary-fixed active:scale-95 transition-transform p-2 rounded-full hover:bg-surface-container-high/50 transition-colors focus:outline-none focus:ring-2 focus:ring-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">account_circle</span>
+</button>
+</header>
+<main class="pt-20 px-margin-mobile max-w-[1200px] mx-auto md:px-margin-desktop md:pt-28">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Current Status Section -->
+<section class="md:col-span-8 lg:col-span-8 flex flex-col gap-6">
+<!-- Main AQI Card -->
+<div class="glass-card rounded-xl p-card-padding flex flex-col items-center justify-center relative overflow-hidden shadow-sm">
+<!-- Subtle background glow for unhealthy status -->
+<div class="absolute inset-0 bg-aqi-unhealthy-sensitive opacity-5 pointer-events-none"></div>
+<div class="absolute top-0 left-0 w-1 h-full bg-aqi-unhealthy-sensitive"></div>
+<h2 class="font-title-md text-title-md text-on-surface-variant mb-6 self-start">Current Air Quality</h2>
+<div class="relative w-64 h-64 flex items-center justify-center">
+<svg class="w-full h-full transform -rotate-90" viewbox="0 0 100 100">
+<!-- Background track -->
+<circle class="text-surface-variant" cx="50" cy="50" fill="none" r="45" stroke="currentColor" stroke-width="6"></circle>
+<!-- Active track (Gauge) -->
+<circle class="gauge-ring" cx="50" cy="50" fill="none" r="45" stroke="#FF9933" stroke-linecap="round" stroke-width="6"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+<span class="font-title-md text-title-md text-on-surface-variant">AQI</span>
+<span class="font-display-aqi text-display-aqi text-aqi-unhealthy-sensitive -mt-2">125</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-1 px-3 py-1 bg-surface-container rounded-full">Unhealthy for Sensitive Groups</span>
+</div>
+</div>
+</div>
+<!-- Weather Info -->
+<div class="glass-card rounded-xl p-card-padding flex justify-around items-center shadow-sm">
+<div class="flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-outline" style="font-variation-settings: 'FILL' 0;">thermostat</span>
+<span class="font-label-data text-label-data text-on-surface">32°C</span>
+</div>
+<div class="w-px h-8 bg-outline-variant/30"></div>
+<div class="flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-outline" style="font-variation-settings: 'FILL' 0;">humidity_percentage</span>
+<span class="font-label-data text-label-data text-on-surface">65%</span>
+</div>
+<div class="w-px h-8 bg-outline-variant/30"></div>
+<div class="flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-outline" style="font-variation-settings: 'FILL' 0;">air</span>
+<span class="font-label-data text-label-data text-on-surface">12 km/h</span>
+</div>
+</div>
+<!-- Trend Chart -->
+<div class="glass-card rounded-xl p-card-padding shadow-sm">
+<h3 class="font-title-md text-title-md text-on-surface-variant mb-4">24 Hour Trend</h3>
+<div class="w-full h-48 relative">
+<!-- Simulated Chart -->
+<svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 400 150">
+<defs>
+<lineargradient id="chartGradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#00628e" stop-opacity="0.2"></stop>
+<stop offset="100%" stop-color="#00628e" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<!-- Grid lines -->
+<line class="text-outline-variant/20" stroke="currentColor" stroke-width="1" x1="0" x2="400" y1="30" y2="30"></line>
+<line class="text-outline-variant/20" stroke="currentColor" stroke-width="1" x1="0" x2="400" y1="75" y2="75"></line>
+<line class="text-outline-variant/20" stroke="currentColor" stroke-width="1" x1="0" x2="400" y1="120" y2="120"></line>
+<!-- Data Area -->
+<path class="chart-area" d="M0,120 C50,110 100,70 150,80 C200,90 250,50 300,40 C350,30 400,60 400,60 L400,150 L0,150 Z"></path>
+<!-- Data Line -->
+<path class="chart-line" d="M0,120 C50,110 100,70 150,80 C200,90 250,50 300,40 C350,30 400,60 400,60"></path>
+</svg>
+</div>
+</div>
+</section>
+<!-- Station List Section -->
+<section class="md:col-span-4 lg:col-span-4 flex flex-col gap-4">
+<div class="flex justify-between items-center mb-2">
+<h2 class="font-title-md text-title-md text-on-surface">Monitoring Stations</h2>
+<button class="text-primary text-body-sm font-medium hover:underline focus:outline-none focus:ring-2 focus:ring-primary rounded-sm">View All</button>
+</div>
+<!-- Station Card 1 -->
+<div class="glass-card rounded-xl p-4 flex items-center justify-between shadow-sm hover:shadow-md transition-shadow cursor-pointer relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-aqi-unhealthy"></div>
+<div class="flex flex-col pl-2">
+<span class="font-body-md text-body-md text-on-surface font-medium">Bang Na</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1 mt-1">
+<span class="w-2 h-2 rounded-full bg-aqi-unhealthy inline-block"></span>
+                            Unhealthy
+                        </span>
+</div>
+<div class="text-right">
+<span class="font-title-md text-title-md text-on-surface block">152</span>
+<span class="font-label-data text-label-data text-outline">AQI</span>
+</div>
+</div>
+<!-- Station Card 2 -->
+<div class="glass-card rounded-xl p-4 flex items-center justify-between shadow-sm hover:shadow-md transition-shadow cursor-pointer relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-aqi-unhealthy-sensitive"></div>
+<div class="flex flex-col pl-2">
+<span class="font-body-md text-body-md text-on-surface font-medium">Pathum Wan</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1 mt-1">
+<span class="w-2 h-2 rounded-full bg-aqi-unhealthy-sensitive inline-block"></span>
+                            Unhealthy for Sensitive
+                        </span>
+</div>
+<div class="text-right">
+<span class="font-title-md text-title-md text-on-surface block">138</span>
+<span class="font-label-data text-label-data text-outline">AQI</span>
+</div>
+</div>
+<!-- Station Card 3 -->
+<div class="glass-card rounded-xl p-4 flex items-center justify-between shadow-sm hover:shadow-md transition-shadow cursor-pointer relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-aqi-moderate"></div>
+<div class="flex flex-col pl-2">
+<span class="font-body-md text-body-md text-on-surface font-medium">Din Daeng</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1 mt-1">
+<span class="w-2 h-2 rounded-full bg-aqi-moderate inline-block"></span>
+                            Moderate
+                        </span>
+</div>
+<div class="text-right">
+<span class="font-title-md text-title-md text-on-surface block">85</span>
+<span class="font-label-data text-label-data text-outline">AQI</span>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-4 pt-2 bg-surface/90 dark:bg-surface-container-lowest/90 backdrop-blur-xl border-t border-outline-variant/20 dark:border-outline/10 shadow-lg dark:shadow-none rounded-t-xl md:hidden">
+<!-- Active Tab: Home -->
+<button class="flex flex-col items-center justify-center bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary rounded-full px-4 py-1 active:scale-90 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-body-sm text-body-sm mt-1">Home</span>
+</button>
+<!-- Inactive Tab: Map -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline px-4 py-1 hover:text-primary dark:hover:text-primary-fixed active:scale-90 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">map</span>
+<span class="font-body-sm text-body-sm mt-1">Map</span>
+</button>
+<!-- Inactive Tab: Stations -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline px-4 py-1 hover:text-primary dark:hover:text-primary-fixed active:scale-90 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">sensors</span>
+<span class="font-body-sm text-body-sm mt-1">Stations</span>
+</button>
+<!-- Inactive Tab: Settings -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline px-4 py-1 hover:text-primary dark:hover:text-primary-fixed active:scale-90 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">settings</span>
+<span class="font-body-sm text-body-sm mt-1">Settings</span>
+</button>
+</nav>
+<!-- Desktop Sidebar (Hidden on Mobile, Visible on md+) -->
+<!-- Assuming standard behavior where bottom nav becomes side nav or top nav links on desktop, here we just hide bottom nav as per instructions, and rely on top app bar for desktop. If a specific side nav is required by layout, it would be added here, but sticking strictly to the provided BottomNavBar JSON for navigation. -->
+</body></html>
